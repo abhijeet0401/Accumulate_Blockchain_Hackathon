@@ -1,0 +1,55 @@
+<!DOCTYPE html lang="en">
+<html>
+<head>
+	<title>Accumulate</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/sha256.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <img src="data:image/png;base64,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" width="30" height="30" class="d-inline-block align-top" alt="">
+          Accumulate Blockchain Hackathon
+        </a>
+      </nav>
+	<div class="container">
+    <div class="row" style="padding-top: 50px;">  
+        
+    <!-- Left -->
+    <div class="col-12 col-md-6" style="padding-bottom: 40px;margin: auto;">
+      <h1 style="color: #35858B; padding-bottom: 2px;">Info Related to Accumulate url</h1>
+      <form id="encrypt" action="index.html">
+        <div class="form-group">
+            <input type="text" class="form-control" name="secret" id="secret" placeholder="Enter Accumulate URL...">
+          </div>
+      
+        
+        <div class="form-group">
+          <button type="submit" class="btn btn-block" style="background-color: #35858B; color: white;">Submit </button>
+        </div>
+      </form>
+      
+      <label for="cipher">Accumulate Query</label>
+      <textarea class="form-control" id="ciphertext" type="text" name="cipher" readonly></textarea>
+    </div>
+
+
+    </div>
+
+  </div>
+
+ 
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./main.js"></script>
+
+</body>
+</html>

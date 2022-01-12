@@ -1,0 +1,24 @@
+#ciphertext{
+    width: inherit;
+    height: 300px;
+  }
+  /* Header */
+  body {
+    background: linear-gradient(-45deg, #F4F9F9, #CCF2F4, #A4EBF3, #00a6fb);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+  }
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
